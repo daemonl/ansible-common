@@ -1,0 +1,15 @@
+- name: "MYSQL"
+  apt: pkg=mysql-server state=latest
+
+- name: "MYSQL CLIENT"
+  apt: pkg=mysql-client state=latest
+
+- name: "MYSQL Service"
+  service: name=mysql state=started enabled=yes
+
+- name: "MySQL Python Tools"
+  apt: pkg=python-mysqldb state=latest
+
+- name: "MySQL Read Only User"
+  mysql_user: name=readonly password={{mysql_readonly_password}} priv=*.*:SELECT
+

@@ -1,0 +1,31 @@
+- name: "Hostname: {{ansible_hostname}}"
+  hostname: "name={{ansible_hostname}}"
+  
+- name: "Install Git"
+  apt: name=git state=latest
+
+- name: "Fail2Ban"
+  apt: name=fail2ban state=latest
+
+- name: "LogWatch"
+  apt: name="logwatch" state=latest
+
+- name: "Log Cron"
+  cron: name="logwatch" minute=0 hour=0 state="present" job="/usr/sbin/logwatch --output mail --mailto damien@rebase.com.au --detail high"
+
+- name: "apparmor"
+  apt: name=apparmor state=latest
+
+- name: "apparmor-profiles"
+  apt: name=apparmor-profiles state=latest
+
+- name: "unattended-upgrades"
+  apt: name="unattended-upgrades" state=latest
+
+- name: "unattended-upgrades config"
+  copy: src=apt_periodic dest=/etc/apt/apt.conf.d/10periodic
+
+- name: "unattended-upgrades config2"
+  copy: src=apt_periodic dest=/etc/apt/apt.conf.d/50unattended-upgrades
+
+

@@ -1,0 +1,5 @@
+- name: aws iam dir
+  file: path=/home/{{user}}/.aws state="directory"
+
+- name: aws iam role config
+  template: "src=config dest=/home/{{user}}/.aws/config"

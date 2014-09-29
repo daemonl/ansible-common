@@ -1,0 +1,7 @@
+
+
+- name: "Python PIP"
+  apt: pkg=python-pip state=latest 
+
+- name: "AWS CLI"
+  pip: name="awscli"

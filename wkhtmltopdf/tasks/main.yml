@@ -1,0 +1,11 @@
+- name: "Ensure /opt/bin"
+  file: path=/opt/bin state=directory owner=root group=root mode=755
+
+- name: wkhtmltopdf
+  copy: "src=builds/wkhtmltopdf-{{ansible_architecture}} dest=/opt/bin/wkhtmltopdf owner=root group=root mode=755"
+
+- name: "libxrender1"
+  apt: name=libxrender1 state=latest
+
+- name: "libfontconfig1"
+  apt: name=libfontconfig1 state=latest

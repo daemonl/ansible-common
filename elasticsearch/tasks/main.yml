@@ -1,0 +1,15 @@
+
+- name: /opt/src folder
+  file: path=/opt/src state=directory owner=root group=root mode=755
+
+- name: download elasticsearch archive
+  get_url: url=https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.1.1.tar.gz dest=/opt/src
+
+- name: unarchive elasticsearch
+  unarchive: copy=no src=/opt/src/elasticsearch-1.1.1.tar.gz dest=/opt/
+
+- name: elasticsearch service
+  template: src=upstart.conf dest=/etc/init/elasticsearch.conf
+
+- name: service running and enabled
+  service: name=elasticsearch state=started enabled=yes
