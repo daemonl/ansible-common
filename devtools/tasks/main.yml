@@ -1,0 +1,16 @@
+
+
+- apt: pkg=vim state=present
+- apt: pkg=git state=present
+- apt: pkg=mercurial state=present
+- apt: pkg=curl state=present
+- apt: pkg=inotify-tools state=present
+
+- apt: pkg=build-essential state=present
+
+- npm: name=coffee-script global=yes
+- npm: name=less global=yes
+- npm: name=requirejs global=yes
+- npm: name=yamljs global=yes
+- npm: name=typescript global=yes
+

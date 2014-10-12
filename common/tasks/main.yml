@@ -10,9 +10,6 @@
 - name: "LogWatch"
   apt: name="logwatch" state=latest
 
-- name: "Log Cron"
-  cron: name="logwatch" minute=0 hour=0 state="present" job="/usr/sbin/logwatch --output mail --mailto damien@rebase.com.au --detail high"
-
 - name: "apparmor"
   apt: name=apparmor state=latest
 

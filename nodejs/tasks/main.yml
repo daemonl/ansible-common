@@ -1,0 +1,12 @@
+- name: "Node apt key"
+  apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
+
+- name: "Node source.list"
+  template: src=sources.list dest=/etc/apt/sources.list.d
+  notify: 
+      apt-get-update
+
+- meta: flush_handlers
+
+- name: "Node.js"
+  apt: pkg=nodejs state=latest

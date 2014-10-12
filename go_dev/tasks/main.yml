@@ -1,18 +1,10 @@
-
-#- name: "Mercurial"
-#  apt: pkg=mercurial state=present
-
-#- name: "Go Source"
-#  hg: repo="https://code.google.com/p/go" revision=release dest=/opt/go
-#  notify: purge-go-repo
-
-#- name: "Install Go"
-#  shell: ./all.bash chdir=/opt/go/src/ creates=/opt/go/pkg
+- name: "/opt/pkg directory"
+  file: path=/opt/pkg state=directory mode=770
 
 - name: "Download golang archive"
-  get_url: url=https://storage.googleapis.com/golang/go1.3.2.linux-amd64.tar.gz dest=/opt/src
+  get_url: url=https://storage.googleapis.com/golang/go1.3.3.linux-amd64.tar.gz dest=/opt/pkg/go1.3.3.linux-amd64.tar.gz
 
 - name: "Unarchive Go (raw)"
-  unarchive: copy=no src=/opt/src/go1.3.2.linux-amd64.tar.gz dest=/opt/
+  unarchive: copy=no src=/opt/pkg/go1.3.3.linux-amd64.tar.gz dest=/opt/
 
 - template: dest=/etc/profile.d/go.sh src=profile.sh
