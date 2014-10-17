@@ -1,0 +1,27 @@
+# Due to oracle's licensing thing, you will need to
+# prepare (or ask for) the .tgz files.
+#
+# http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase6-419409.html
+# The downloads are bin files, you will need to run the bin, 
+# rename the folder it creates (e.g. 'jdk6-32', 'jre7-64'),
+# then tar (e.g. 'tar -cvzf jre6-32.tgz jre6-32.tgz')
+#
+# ... sorry.
+
+- name: "dpkg --add-architecture i386"
+  command: dpkg --add-architecthre i386
+  when: java_versions|join|search("-32") 
+#and dpkg --print-foreign-architectures doesn't contain i386
+
+- name: "32 bit supporting libraries"
+  apt: pkg="libc6-i386"
+  when: java_versions|join|search("-32")
+
+- name: "/opt/java"
+  file: path=/opt/java state=directory mode=770 owner=root group=root
+
+- name: "unarchive versions"
+  unarchive: src={{item}} dest=/opt/java
+  with_items: java_versions
+
+
