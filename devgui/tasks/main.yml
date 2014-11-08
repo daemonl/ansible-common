@@ -4,3 +4,6 @@
 - apt: pkg=tortoisehg state=present
 - apt: pkg=kdiff3 state=present
 - apt: pkg=meld state=present
+
+- apt: pkg=gtk2-engines-murrine state=present
+- apt: pkg=gtk2-engines-pixbuf state=present
