@@ -9,19 +9,28 @@
 # ... sorry.
 
 - name: "dpkg --add-architecture i386"
-  command: dpkg --add-architecthre i386
+  command: dpkg --add-architecture i386
   when: java_versions|join|search("-32") 
 #and dpkg --print-foreign-architectures doesn't contain i386
 
 - name: "32 bit supporting libraries"
-  apt: pkg="libc6-i386"
+  apt: pkg="{{item}}"
+  with_items:
+    - "libc6-i386"
+    - "lib32stdc++6"
+    - "lib32gcc1"
+    - "lib32ncurses5"
+    - "lib32z1"
   when: java_versions|join|search("-32")
 
 - name: "/opt/java"
-  file: path=/opt/java state=directory mode=770 owner=root group=root
+  file: path=/opt/java state=directory mode=0775 owner=root group=root
 
 - name: "unarchive versions"
-  unarchive: src={{item}} dest=/opt/java
+  unarchive: 
+    src: "{{item}}.tgz"
+    dest: /opt/java
+    creates: "/opt/java/{{item}}"
   with_items: java_versions
 
 
