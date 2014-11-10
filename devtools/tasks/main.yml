@@ -9,6 +9,8 @@
 - apt: pkg=build-essential state=present
 
 - npm: name=coffee-script global=yes
+- npm: name=coffee-react global=yes
+- npm: name=grunt-cli global=yes
 - npm: name=less global=yes
 - npm: name=requirejs global=yes
 - npm: name=yamljs global=yes
