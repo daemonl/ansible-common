@@ -6,4 +6,5 @@
     owner: root
     group: root
     mode: 644
+  notify: force_apt_update
 
