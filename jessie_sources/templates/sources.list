@@ -1,0 +1,15 @@
+
+deb {{ mirror }}/debian/ jessie main contrib non-free
+deb-src {{ mirror }}/debian/ jessie main
+
+deb http://security.debian.org/ jessie/updates main
+deb-src http://security.debian.org/ jessie/updates main
+
+# jessie-updates, previously known as 'volatile'
+deb {{ mirror }}/debian/ jessie-updates main
+deb-src {{ mirror }}/debian/ jessie-updates main
+
+# jessie-backports, previously on backports.debian.org
+deb {{ mirror }}/debian/ jessie-backports main
+deb-src {{ mirror }}/debian/ jessie-backports main
+

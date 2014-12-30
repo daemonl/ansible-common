@@ -1,0 +1,9 @@
+
+- name: "AptSources"
+  template:
+    src: sources.list
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 644
+
