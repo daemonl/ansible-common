@@ -1,0 +1,3 @@
+mail_server: smtp.gmail.com
+mail_port: 587
+mail_security: tlsv1

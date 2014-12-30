@@ -1,0 +1,13 @@
+
+- name: "Monit"
+  apt: pkg=monit state=present
+
+- name: "Monit Email settings"
+  template:
+    src: email
+    dest: /etc/monit/conf.d/email
+    owner: root
+    group: root
+    mode: 660
+
+

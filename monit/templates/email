@@ -1,0 +1,10 @@
+{% for address in monit_recipients %}
+set alert {{address}} reminder 1 cycle
+{% endfor %}
+
+set mailserver {{mail_server}} port {{mail_port}}
+    username {{mail_username}} password {{mail_password}}
+    using {{mail_security}}
+
+set httpd port 2812
+	allow user:pass
