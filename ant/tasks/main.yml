@@ -1,0 +1,10 @@
+- file:
+    path: /opt/java
+    state: directory
+    owner: root
+    group: root
+
+- name: Ant Archive
+  unarchive:
+    src: apache-ant-1.9.4-bin.tar.gz
+    dest: /opt/java

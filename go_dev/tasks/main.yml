@@ -7,4 +7,7 @@
 - name: "Unarchive Go (raw)"
   unarchive: copy=no src=/opt/pkg/go1.3.3.linux-amd64.tar.gz dest=/opt/
 
+  #- name: "Golang crosscompile"
+  #  git://github.com/davecheney/golang-crosscompile.git
+
 - template: dest=/etc/profile.d/go.sh src=profile.sh

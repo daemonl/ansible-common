@@ -13,6 +13,6 @@
 - npm: name=grunt-cli global=yes
 - npm: name=less global=yes
 - npm: name=requirejs global=yes
-- npm: name=yamljs global=yes
+- npm: name=yamljs global=yes version=0.1.6
 - npm: name=typescript global=yes
 

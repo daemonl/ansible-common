@@ -5,7 +5,7 @@
   apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
 
 - name: "Node source.list"
-  template: src=sources.list dest=/etc/apt/sources.list.d
+  template: src=sources.list dest=/etc/apt/sources.list.d/nodejs.list
   notify: 
       apt-get-update
 

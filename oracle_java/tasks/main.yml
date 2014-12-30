@@ -10,7 +10,7 @@
 
 - name: "dpkg --add-architecture i386"
   command: dpkg --add-architecture i386
-  when: java_versions|join|search("-32") 
+  when: java_versions|join|search("-32")
 #and dpkg --print-foreign-architectures doesn't contain i386
 
 - name: "32 bit supporting libraries"
@@ -27,7 +27,7 @@
   file: path=/opt/java state=directory mode=0775 owner=root group=root
 
 - name: "unarchive versions"
-  unarchive: 
+  unarchive:
     src: "{{item}}.tgz"
     dest: /opt/java
     creates: "/opt/java/{{item}}"
