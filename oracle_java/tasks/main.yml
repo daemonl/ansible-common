@@ -10,7 +10,7 @@
 
 - name: "dpkg --add-architecture i386"
   command: dpkg --add-architecture i386
-  when: java_versions|join|search("-32")
+  when: java_versions|join|search("-32") and ansible_os_family=="Debian"
 #and dpkg --print-foreign-architectures doesn't contain i386
 
 - name: "32 bit supporting libraries"
@@ -21,7 +21,7 @@
     - "lib32gcc1"
     - "lib32ncurses5"
     - "lib32z1"
-  when: java_versions|join|search("-32")
+  when: java_versions|join|search("-32") and ansible_os_family=="Debian"
 
 - name: "/opt/java"
   file: path=/opt/java state=directory mode=0775 owner=root group=root

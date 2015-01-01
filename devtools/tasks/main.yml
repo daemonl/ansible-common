@@ -1,12 +1,24 @@
 
+- name: "Install Packages (APT)"
+  when: ansible_pkg_mgr == "apt"
+  apt: "pkg={{item}} state=present"
+  with_items:
+    - vim
+    - git
+    - mercurial
+    - curl
+    - inotify-tools
+    - build-essential
 
-- apt: pkg=vim state=present
-- apt: pkg=git state=present
-- apt: pkg=mercurial state=present
-- apt: pkg=curl state=present
-- apt: pkg=inotify-tools state=present
-
-- apt: pkg=build-essential state=present
+- name: "Install Packages (PACMAN)"
+  when: ansible_pkg_mgr == "pacman"
+  pacman: "name={{item}} state=present"
+  with_items:
+    #- vim
+    - git
+    - mercurial
+    - curl
+    - inotify-tools
 
 - npm: name=coffee-script global=yes
 - npm: name=coffee-react global=yes

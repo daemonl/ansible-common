@@ -1,9 +1,25 @@
 
-- apt: pkg=vim-gtk state=present
-- apt: pkg=gitg state=present
-- apt: pkg=tortoisehg state=present
-- apt: pkg=kdiff3 state=present
-- apt: pkg=meld state=present
+- name: "GUI Packages (APT)"
+  when: ansible_pkg_mgr == "apt"
+  apt: "pkg={{item}} state=present"
+  with_items:
+    - vim-gtk
+    - gitg
+    - kdiff3
+    - meld
+    - tortoisehg
+    - gtk2-engines-murrine 
+    - gtk2-engines-pixbuf
 
-- apt: pkg=gtk2-engines-murrine state=present
-- apt: pkg=gtk2-engines-pixbuf state=present
+# MISSING: Tortoisehg
+
+- name: "GUI Packages (PACMAN)"
+  when: ansible_pkg_mgr == "pacman"
+  pacman: "name={{item}} state=present"
+  with_items:
+    - gvim
+    - gitg
+    - kdiff3
+    - meld
+    - gtk-engine-murrine
+    - gdk-pixbuf2
