@@ -7,21 +7,13 @@
 # then tar (e.g. 'tar -cvzf jre6-32.tgz jre6-32.tgz')
 #
 # ... sorry.
+#
+- include: debian_32.yml
+  when: java_versions|join|search("-32") and ansible_pkg_mgr=="apt"
 
-- name: "dpkg --add-architecture i386"
-  command: dpkg --add-architecture i386
-  when: java_versions|join|search("-32") and ansible_os_family=="Debian"
-#and dpkg --print-foreign-architectures doesn't contain i386
+- include: arch_32.yml
+  when: java_versions|join|search("-32") and ansible_pkg_mgr=="pacman"
 
-- name: "32 bit supporting libraries"
-  apt: pkg="{{item}}"
-  with_items:
-    - "libc6-i386"
-    - "lib32stdc++6"
-    - "lib32gcc1"
-    - "lib32ncurses5"
-    - "lib32z1"
-  when: java_versions|join|search("-32") and ansible_os_family=="Debian"
 
 - name: "/opt/java"
   file: path=/opt/java state=directory mode=0775 owner=root group=root

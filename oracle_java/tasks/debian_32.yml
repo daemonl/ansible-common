@@ -1,0 +1,12 @@
+- name: "dpkg --add-architecture i386"
+  command: dpkg --add-architecture i386
+#and dpkg --print-foreign-architectures doesn't contain i386
+
+- name: "32 bit supporting libraries (APT)"
+  apt: pkg="{{item}}"
+  with_items:
+    - "libc6-i386"
+    - "lib32stdc++6"
+    - "lib32gcc1"
+    - "lib32ncurses5"
+    - "lib32z1"

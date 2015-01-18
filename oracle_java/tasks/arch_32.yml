@@ -1,0 +1,10 @@
+
+# Add to /etc/pacman.conf:
+#
+# [multilib]
+# Include = /etc/pacman.d/mirrorlist
+
+- name: "32 bit supporting libraries (PACMAN)"
+  pacman: name="{{item}}" state=present
+  with_items:
+    - "lib32-zlib"

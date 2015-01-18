@@ -1,14 +1,26 @@
-- name: "MYSQL"
-  apt: pkg=mysql-server state=latest
+- name: "MYSQL Packages (APT)"
+  when: ansible_pkg_mgr == "apt"
+  apt: "pkg={{item}} state=latest"
+  with_items:
+    - mysql-server
+    - mysql-client
+    - python-mysqldb
 
-- name: "MYSQL CLIENT"
-  apt: pkg=mysql-client state=latest
+- name: "MYSQL Packages (PACMAN)"
+  when: ansible_pkg_mgr == "pacman"
+  pacman: "name={{item}} state=present"
+  with_items:
+    - mariadb
+    - mariadb-clients
+    - mysql-python
 
 - name: "MYSQL Service"
+  when: ansible_pkg_mgr == "apt"
   service: name=mysql state=started enabled=yes
 
-- name: "MySQL Python Tools"
-  apt: pkg=python-mysqldb state=latest
+- name: "MYSQL Service"
+  when: ansible_pkg_mgr == "pacman"
+  service: name=mysqld.service state=started enabled=yes
 
 - name: "MySQL Read Only User"
   mysql_user: name=readonly password={{mysql_readonly_password}} priv=*.*:SELECT
