@@ -9,6 +9,7 @@
     - curl
     - inotify-tools
     - build-essential
+    - pkg-config
 
 - name: "Install Packages (PACMAN)"
   when: ansible_pkg_mgr == "pacman"
