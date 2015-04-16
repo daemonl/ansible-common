@@ -23,5 +23,6 @@
   service: name=mysqld.service state=started enabled=yes
 
 - name: "MySQL Read Only User"
+  when: mysql_readonly_password is defined
   mysql_user: name=readonly password={{mysql_readonly_password}} priv=*.*:SELECT
 
